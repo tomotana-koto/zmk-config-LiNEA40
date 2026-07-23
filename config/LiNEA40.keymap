@@ -57,7 +57,7 @@
         layers = <SCROLL>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            //スクロール方向を逆転,,,,,,,
+            //スクロール方向を逆転,,,,,,,,
             <&zip_xy_to_scroll_mapper>;
     };
 };
@@ -99,6 +99,51 @@
 
             tap-ms = <20>;
         };
+
+        minus_single: minus_single {
+            compatible = "zmk,behavior-mod-morph";
+            label = "MINUS_SINGLE";
+            bindings = <&kp MINUS>, <&kp AMPERSAND>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT)>;
+        };
+
+        slash_double: slash_double {
+            compatible = "zmk,behavior-mod-morph";
+            label = "SLASH_DOUBLE";
+            bindings = <&kp SLASH>, <&kp AT_SIGN>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT)>;
+        };
+
+        period_exclamation: period_exclamation {
+            compatible = "zmk,behavior-mod-morph";
+            label = "PERIOD_EXCLAMATION";
+            bindings = <&kp PERIOD>, <&kp EXCLAMATION>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT)>;
+        };
+
+        comma_question: comma_question {
+            compatible = "zmk,behavior-mod-morph";
+            label = "COMMA_QUESTION";
+            bindings = <&kp COMMA>, <&kp QUESTION>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT)>;
+        };
+    };
+
+    macros {
+        santen: santenj {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp QUESTION &kp T &kp INTERNATIONAL_4>;
+            label = "SANTENJ";
+        };
     };
 
     keymap {
@@ -106,10 +151,10 @@
 
         default_layer {
             bindings = <
-&kp Q      &kp W                     &kp E       &kp R  &kp T                      &kp Y           &kp U  &kp I                                &kp O       &kp P
-&kp A      &kp S                     &kp D       &kp F  &kp G                      &kp H           &kp J  &kp K                                &kp L       &lt 3 MINUS
-&kp Z      &kp X                     &kp C       &kp V  &kp B                      &kp N           &kp M  &kp COMMA                            &kp DOT     &mt RIGHT_SHIFT BACKSPACE
-&kp LCTRL  &mt LS(LG(S)) LG(PERIOD)  &mt F10 F7  &none  &kp SPACE  &mo 2    &mo 3  &kp LEFT_SHIFT         &mt INTERNATIONAL_4 INTERNATIONAL_5  &kp DELETE  &kp LEFT_ALT
+&kp Q      &kp W                     &kp E       &kp R  &kp T                      &kp Y           &kp U  &kp I                                &kp O                &kp P
+&kp A      &kp S                     &kp D       &kp F  &kp G                      &kp H           &kp J  &kp K                                &kp L                &minus_single
+&kp Z      &kp X                     &kp C       &kp V  &kp B                      &kp N           &kp M  &comma_question                      &period_exclamation  &slash_double
+&kp LCTRL  &mt LS(LG(S)) LG(PERIOD)  &mt F10 F7  &none  &kp SPACE  &mo 2    &mo 3  &kp LEFT_SHIFT         &mt INTERNATIONAL_4 INTERNATIONAL_5  &kp DELETE           &kp LEFT_ALT
             >;
 
             sensor-bindings = <&re_kp DOWN_ARROW UP_ARROW>;
@@ -126,10 +171,10 @@
 
         number_symbol {
             bindings = <
-&none  &kp LEFT_BRACKET  &kp HASH     &kp APOS       &trans                     &kp LS(MINUS)   &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp LS(SEMI)
-&none  &kp LS(NUMBER_6)  &kp PERCENT  &kp SEMICOLON  &trans                     &kp PERIOD      &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp MINUS
-&none  &none             &none        &none          &none                      &kp N0          &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp SLASH
-&none  &none             &none        &none          &kp SPACE  &none    &none  &kp LEFT_SHIFT                &kp N0        &none         &kp DOUBLE_QUOTES
+&none  &kp LEFT_BRACKET  &kp HASH     &kp APOS       &santen                                  &kp LS(MINUS)   &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp LS(SEMI)
+&none  &kp LS(NUMBER_6)  &kp PERCENT  &kp SEMICOLON  &kp LS(INTERNATIONAL_1)                  &kp PERIOD      &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp MINUS
+&none  &none             &none        &none          &none                                    &kp N0          &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp SLASH
+&none  &none             &none        &none          &kp SPACE                &none    &none  &kp LEFT_SHIFT                &kp N0        &none         &kp DOUBLE_QUOTES
             >;
         };
 
