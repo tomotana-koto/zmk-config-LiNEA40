@@ -57,7 +57,7 @@
         layers = <SCROLL>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            //スクロール方向を逆転,,,,,,,,
+            //スクロール方向を逆転,,,,,,,,,
             <&zip_xy_to_scroll_mapper>;
     };
 };
@@ -69,19 +69,55 @@
         Enter {
             bindings = <&kp ENTER>;
             key-positions = <16 18>;
-            layers = <0 2>;
+            layers = <0 2 1>;
         };
 
         Backspace {
             bindings = <&kp BACKSPACE>;
             key-positions = <11 13>;
-            layers = <0 2>;
+            layers = <0 2 1>;
         };
 
         Middle_click {
             bindings = <&mkp MCLK>;
             key-positions = <16 17>;
             layers = <1>;
+        };
+
+        left_kakko {
+            bindings = <&kp LS(N8)>;
+            key-positions = <2 3>;
+            layers = <0 1 2>;
+        };
+
+        right_kakko {
+            bindings = <&kp LS(N9)>;
+            key-positions = <3 4>;
+            layers = <0 2 1>;
+        };
+
+        left_kagi {
+            bindings = <&kp RIGHT_BRACKET>;
+            key-positions = <12 13>;
+            layers = <0 2 1>;
+        };
+
+        right_kagi {
+            bindings = <&kp NUHS>;
+            key-positions = <13 14>;
+            layers = <0 2 1>;
+        };
+
+        syounari {
+            bindings = <&kp LS(COMMA)>;
+            key-positions = <22 23>;
+            layers = <0 2 1>;
+        };
+
+        dainari {
+            bindings = <&kp LS(PERIOD)>;
+            key-positions = <23 24>;
+            layers = <0 2 1>;
         };
     };
 
@@ -174,8 +210,10 @@
 &none  &kp LEFT_BRACKET  &kp HASH     &kp APOS       &santen                                  &kp LS(MINUS)   &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp LS(SEMI)
 &none  &kp LS(NUMBER_6)  &kp PERCENT  &kp SEMICOLON  &kp LS(INTERNATIONAL_1)                  &kp PERIOD      &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp MINUS
 &none  &none             &none        &none          &none                                    &kp N0          &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp SLASH
-&none  &none             &none        &none          &kp SPACE                &none    &none  &kp LEFT_SHIFT                &kp N0        &none         &kp DOUBLE_QUOTES
+&none  &none             &none        &none          &kp SPACE                &none    &none  &kp LEFT_SHIFT                &kp N0        &kp PERIOD    &kp DOUBLE_QUOTES
             >;
+
+            sensor-bindings = <&inc_dec_kp LEFT RIGHT>;
         };
 
         arrow {
